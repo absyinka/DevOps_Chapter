@@ -1,0 +1,2 @@
+{"locations": ["us-east2", "east-africa", "china", "uk"], "uptime": [99.99, 99.98, 99.9, 99.91]}
+("Arinze", "Queensly", "Deji", "Yinka", "Daniel", "Omor", "Prince", "Temmy", "Ola Oluwa")
