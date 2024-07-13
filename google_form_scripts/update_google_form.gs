@@ -31,7 +31,7 @@ function importQuestionsFromDoc() {
         addQuestionToForm(form, question, options, correctAnswer);
       }
       section = line.substring(1).trim();
-      form.addSectionHeaderItem().setTitle(section);
+      form.addPageBreakItem().setTitle(section);
       question = '';
       options = [];
       correctAnswer = '';
@@ -77,3 +77,4 @@ function addQuestionToForm(form, question, options, correctAnswer) {
     form.addTextItem().setTitle(question);
   }
 }
+
