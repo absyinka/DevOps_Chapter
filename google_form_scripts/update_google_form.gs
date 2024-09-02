@@ -1,8 +1,8 @@
 function importQuestionsFromDoc() {
   // ID of the Google Doc with questions
-  var docId = 'YOUR_DOC_ID';
+  var docId = '1eWO3fyxye4AYjSE6CoLlygclzHoSyf4USPICQkDShUA';
   // ID of the Google Form
-  var formId = 'YOUR_FORM_ID';
+  var formId = '1941cFzy8fggLo98BDOdmoGZe6dTaVfuzCk2GTnrWtn0';
   
   // Open the Google Doc
   var doc = DocumentApp.openById(docId);
@@ -64,17 +64,24 @@ function importQuestionsFromDoc() {
 
 function addQuestionToForm(form, question, options, correctAnswer) {
   if (options.length > 0) {
-    var item = form.addMultipleChoiceItem()
-        .setTitle(question)
-        .setChoiceValues(options);
+    // Create the multiple choice item
+    var item = form.addMultipleChoiceItem().setTitle(question);
+
+    // Create choice objects, marking the correct answer
+    var choices = options.map(function(option) {
+      return option === correctAnswer ? item.createChoice(option, true) : item.createChoice(option, false);
+    });
+
+    // Set the choices to the item
+    item.setChoices(choices);
+    
+    // Set points for the question if there's a correct answer
     if (correctAnswer) {
       var feedback = FormApp.createFeedback().setText("Correct answer").build();
-      var correctChoice = item.getChoices().filter(choice => choice.getValue() === correctAnswer)[0];
-      item.setFeedbackForCorrect(correctChoice.getFeedback());
+      item.setFeedbackForCorrect(feedback);
       item.setPoints(1);
     }
   } else {
     form.addTextItem().setTitle(question);
   }
 }
-

@@ -1,4 +1,4 @@
-function importQuestionsFromDoc() {
+function importQuestionsFromDoc2() {
   // ID of the Google Doc with questions
   var docId = 'DOC_ID'
   // ID of the Google Form
@@ -26,7 +26,7 @@ function importQuestionsFromDoc() {
     if (line.startsWith('#')) {
       // It's a section header
       section = line.substring(1).trim()
-      form.addSectionHeaderItem().setTitle(section)
+      form.addPageBreakItem().setTitle(section)
     } else if (line.startsWith('-')) {
       // It's an option for a multiple-choice question
       options.push(line.substring(1).trim())
